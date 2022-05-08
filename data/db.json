@@ -1,0 +1,55 @@
+{
+    "posts": [
+      { "id": 1, "title": "json-server", "author": "typicode" }
+    ],
+    "comments": [
+      { "id": 1, "body": "some comment", "postId": 1 }
+    ],
+    "profile": { "name": "typicode" },
+    "brokerage": 
+    [
+        {
+            "id": 1,
+            "name": "AIA",
+            "type": "active",
+            "region": "AU",
+            "group": "Dark Side"
+        },
+        {
+            "id": 2,
+            "name": "Prudential",
+            "type": "active",
+            "region": "ID",
+            "group": "Dark Side"
+        },
+        {
+            "id": 3,
+            "name": "AIX",
+            "type": "active",
+            "region": "US",
+            "group": "Bright Side"
+        }
+    ],
+    "group": 
+    [
+        {
+            "id": 1,
+            "name": "Dark Side"
+        },
+        {
+            "id": 2,
+            "name": "Bright Side"
+        }
+    ],
+    "region": 
+    [
+        {
+            "id": 1,
+            "name": "US"
+        },
+        {
+            "id": 2,
+            "name": "AU"
+        }
+    ]
+}
