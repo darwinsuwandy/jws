@@ -3,7 +3,7 @@
       { "id": 1, "title": "json-server", "author": "typicode" }
     ],
     "comments": [
-      { "id": 1, "body": "some comment", "postId": 1 }
+      { "id": 1, "body": "some comment", "postId": 1, "asfd": 1 }
     ],
     "profile": { "name": "typicode" },
     "brokerage": 
@@ -39,6 +39,14 @@
         {
             "id": 2,
             "name": "Bright Side"
+        },
+        {
+            "id": 3,
+            "name": "Country Mile"
+        },
+        {
+            "id": 4,
+            "name": "IMC"
         }
     ],
     "region": 
@@ -50,6 +58,14 @@
         {
             "id": 2,
             "name": "AU"
+        },
+        {
+            "id": 3,
+            "name": "NZ"
+        },
+        {
+            "id": 4,
+            "name": "UK"
         }
     ]
 }
