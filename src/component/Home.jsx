@@ -15,6 +15,10 @@ const Home = () => {
         getRegionData();
     }, [])
 
+    useEffect(() => {
+        getData();
+    }, brokerageData)
+
     const getData = async () => {
         setLoading(true);
         const apiUrl = `http://localhost:8000/brokerage`;
@@ -44,6 +48,8 @@ const Home = () => {
             {
                 openAddAccModal && 
                     <AddAccount closeModal={() => setOpenAddAccModal(false)} 
+                            brokerageData={brokerageData}
+                            setBrokerageData={setBrokerageData}
                             regionData={regionData}
                             groupData={groupData}
                     />
