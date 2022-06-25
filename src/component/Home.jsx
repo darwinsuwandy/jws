@@ -54,7 +54,10 @@ const Home = () => {
                             groupData={groupData}
                     />
             }
-            <DataTable brokerageData={brokerageData}/>
+            <DataTable brokerageData={brokerageData}
+                    setBrokerageData={setBrokerageData}
+                    setOpenAddAccModal={setOpenAddAccModal}
+            />
             {
                 regionData && 
                     regionData.map((item) => 

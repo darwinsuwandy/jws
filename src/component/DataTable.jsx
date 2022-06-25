@@ -38,7 +38,7 @@ const columns = [
     { id: 'action', label: 'Action', minWidth: 170 },
 ];
 
-const DataTable = ({ brokerageData }) => {
+const DataTable = ({ brokerageData, setBrokerageData, setOpenAddAccModal }) => {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -50,6 +50,12 @@ const DataTable = ({ brokerageData }) => {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
+
+    const deleteData = (id) => {
+        console.log("Delete button clicked, id is : " + id);
+        let filteredData = brokerageData.filter((item) => item.id !== id)
+        setBrokerageData(filteredData);
+    }
 
     return (
         <Paper sx={{ width: '100%', overflow: 'hidden' }}>
@@ -66,7 +72,7 @@ const DataTable = ({ brokerageData }) => {
                     </TableHead>
                     <TableBody>
                     {
-                        brokerageData.map((item) => {
+                        brokerageData.map((item, idx) => {
                             return(
                                 <StyledTableRow>
                                     <StyledTableCell>{item.group}</StyledTableCell>
@@ -74,8 +80,8 @@ const DataTable = ({ brokerageData }) => {
                                     <StyledTableCell>{item.type}</StyledTableCell>
                                     <StyledTableCell>{item.region}</StyledTableCell>
                                     <StyledTableCell>
-                                        <button>Edit</button>
-                                        <button>Delete</button>
+                                        <button onClick={() => setOpenAddAccModal(true)}>Edit</button>
+                                        <button onClick={() => deleteData(item.id)}>Delete</button>
                                     </StyledTableCell>
                                 </StyledTableRow>
                             )
