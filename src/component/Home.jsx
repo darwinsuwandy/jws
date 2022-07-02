@@ -8,6 +8,8 @@ const Home = () => {
     const [groupData, setGroupData] = useState([]);
     const [regionData, setRegionData] = useState([]);
     const [openAddAccModal, setOpenAddAccModal] = useState(false);
+    const [isEdit, setIsEdit] = useState(false);
+    const [editId, setEditId] = useState(0);
 
     useEffect(() => {
         getData();
@@ -42,9 +44,14 @@ const Home = () => {
         setRegionData(res);
     }
 
+    const handleAddAccBtn = () => {
+        setOpenAddAccModal(true);
+        setIsEdit(false);
+    }
+
     return (
         <div>
-            <button onClick={() => setOpenAddAccModal(true)}>Add Account</button>
+            <button onClick={handleAddAccBtn}>Add Account</button>
             {
                 openAddAccModal && 
                     <AddAccount closeModal={() => setOpenAddAccModal(false)} 
@@ -52,11 +59,15 @@ const Home = () => {
                             setBrokerageData={setBrokerageData}
                             regionData={regionData}
                             groupData={groupData}
+                            isEdit={isEdit}
+                            editId={editId}
                     />
             }
             <DataTable brokerageData={brokerageData}
                     setBrokerageData={setBrokerageData}
                     setOpenAddAccModal={setOpenAddAccModal}
+                    setIsEdit={setIsEdit}
+                    setEditId={setEditId}
             />
             {
                 regionData && 

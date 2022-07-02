@@ -8,6 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import TablePagination from '@mui/material/TablePagination';
+import { isEditable } from '@testing-library/user-event/dist/utils';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -38,7 +39,7 @@ const columns = [
     { id: 'action', label: 'Action', minWidth: 170 },
 ];
 
-const DataTable = ({ brokerageData, setBrokerageData, setOpenAddAccModal }) => {
+const DataTable = ({ brokerageData, setBrokerageData, setOpenAddAccModal, setIsEdit, setEditId }) => {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -50,6 +51,13 @@ const DataTable = ({ brokerageData, setBrokerageData, setOpenAddAccModal }) => {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
+
+    const handleEditBtn = (id) => {
+        //let filteredData = brokerageData.filter((item) => item.id === id)
+        setOpenAddAccModal(true);
+        setIsEdit(true);
+        setEditId(id);
+    }
 
     const deleteData = (id) => {
         console.log("Delete button clicked, id is : " + id);
@@ -80,7 +88,7 @@ const DataTable = ({ brokerageData, setBrokerageData, setOpenAddAccModal }) => {
                                     <StyledTableCell>{item.type}</StyledTableCell>
                                     <StyledTableCell>{item.region}</StyledTableCell>
                                     <StyledTableCell>
-                                        <button onClick={() => setOpenAddAccModal(true)}>Edit</button>
+                                        <button onClick={() => handleEditBtn(item.id)}>Edit</button>
                                         <button onClick={() => deleteData(item.id)}>Delete</button>
                                     </StyledTableCell>
                                 </StyledTableRow>

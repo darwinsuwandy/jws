@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './AddAccount.css';
 
-const AddAccount = ({closeModal, brokerageData, setBrokerageData, regionData, groupData}) => {
+const AddAccount = ({closeModal, brokerageData, setBrokerageData, regionData, groupData, isEdit, editId}) => {
     const [loading, setLoading] = useState(false);
+    const [editData, setEditData] = useState([]);
     let lastArr = brokerageData[brokerageData.length - 1]
+
     const [obj1, setObj1] = useState({
             "id": lastArr.id + 1,
             "name": "",
@@ -19,9 +21,26 @@ const AddAccount = ({closeModal, brokerageData, setBrokerageData, regionData, gr
     }
 
     const testing = () => {
-        console.log(brokerageData);
+        console.log(editData);
+        console.log(obj1);
         
     }
+
+    useEffect(() => {
+        console.log(isEdit);
+        console.log(editId);
+        const filteredData = brokerageData.filter((item) => item.id === editId)
+        if (isEdit) {
+            setEditData(filteredData);
+            setObj1(prevState => ({
+                ...prevState, "name": filteredData.map((item, i) => item.name)
+                            , "type": filteredData.map((item, i) => item.type)
+                            , "region": filteredData.map((item, i) => item.region)
+                            , "group": filteredData.map((item, i) => item.group)
+            }));
+            // setObj1(prevState => ({...prevState, ...filteredData}));
+        }
+    },[])
 
     const submitData = async (e) => {
         //e.preventDefault();
@@ -57,7 +76,7 @@ const AddAccount = ({closeModal, brokerageData, setBrokerageData, regionData, gr
             <form>
                 <div>
                     <label>Brokerage Group</label>
-                    <select name="group" onChange={(e) => handleInputChange(e)}>
+                    <select name="group" onChange={(e) => handleInputChange(e)} value={obj1.group}>
                     {
                         groupData && 
                             groupData.map((item, idx) => {
@@ -71,11 +90,12 @@ const AddAccount = ({closeModal, brokerageData, setBrokerageData, regionData, gr
                 </div>
                 <div>
                     <label>Brokerage Name</label>
-                    <input type="text" name="name" onChange={(e) => handleInputChange(e)}/>
+                    {/* <input type="text" name="name" onChange={(e) => handleInputChange(e)} value={isEdit && editData.map((item, i) => item.name)}/> */}
+                    <input type="text" name="name" onChange={(e) => handleInputChange(e)} value={obj1.name}/>
                 </div>
                 <div>
                     <label>Region</label>
-                    <select name="region" onChange={(e) => handleInputChange(e)}>
+                    <select name="region" onChange={(e) => handleInputChange(e)} value={obj1.region}>
                     {
                         regionData && 
                             regionData.map((item, idx) => 
@@ -92,7 +112,8 @@ const AddAccount = ({closeModal, brokerageData, setBrokerageData, regionData, gr
                 </div>
                 <button type="button" onClick={submitData}>Submit</button>
             </form>
-            {/* <button onClick={testing}>Console Log</button> */}
+            <button onClick={testing}>Console Log</button>
+            { editData && editData.map((item, idx) => <div>{item.name}</div>) }
         </div>
     </div>
   )
