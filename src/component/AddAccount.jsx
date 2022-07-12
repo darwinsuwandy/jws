@@ -3,6 +3,7 @@ import './AddAccount.css';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import { makeStyles } from '@mui/styles';
+import { red } from '@mui/material/colors';
 
 const useStyles = makeStyles({
     field: {
@@ -127,8 +128,9 @@ const AddAccount = ({closeModal, brokerageData, setBrokerageData, regionData, gr
                             onChange={(e) => handleInputChange(e)} 
                             value={obj1.name}
                             size="small"
-                            sx={{ borderRadius: 0 }}
+                            sx={{ borderRadius: "50%", border: "none", backgroundColor : "red" }}
                         />
+                        <button className='abcd'>Abcd</button>
                     </div>
                 </div>
                 <div>

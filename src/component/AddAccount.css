@@ -26,8 +26,12 @@
 
 }
 
+.abcd {
+    border-radius: 25%;
+}
+
 .TextField-without-border-radius {
-    border-radius: 0;
+    border-radius: 25;
   }
 
 .type-btn {
